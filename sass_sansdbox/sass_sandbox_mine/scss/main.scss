@@ -1,0 +1,75 @@
+@import'variables';
+@import'function';
+
+
+// Reset
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background: $light-color;
+  font-family:$font-stack ;
+  color: $dark-color;
+  line-height: 1.5;
+}
+
+header{
+  background: $dark-color;
+  color: set-text-color($dark-color);
+  padding: 1rem;
+  // look how nesting work
+  h1{
+    text-align: center;
+  }
+}
+// to style every class of section
+.section {
+  padding: 3rem;
+  h3{
+    font-size: 2rem;
+  }
+  // notice that '&' refers to the parent
+  &-a{
+    background: $primary-color;
+    color: set-text-color($primary-color);
+  } 
+  &-b{
+    background: $secondary-color;
+    color: set-text-color($secondary-color);
+
+  } 
+}
+
+%btn-shared{
+  display: inline-block;
+  padding: 0.7rem 2rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+.btn{
+      &-light{
+        @extend %btn-shared;
+        background: $light-color;
+        color: set-text-color($light-color);
+        &:hover{
+       @include transform(rotate(20deg));
+       background-color: darken($light-color, 10%);
+        }
+        
+     }
+     &-dark{
+       @extend %btn-shared;
+       background: $dark-color;
+       color: set-text-color($dark-color);
+   
+       &:hover{
+      @include transform(rotate(-20deg));
+      background-color: lighten($dark-color, 10%);
+
+       }
+     }
+}
